@@ -6,14 +6,13 @@ const {Router} = require('express');
 const userRouter = Router();
 const { z } = require("zod");
 const { userModel } = require("../db");
-const dotenv = require("dotenv")
-dotenv.config()
 
     userRouter.post("/signup",async function(req,res){
         // const email = req.body.email
         // const password = req.body.password
         // const firstName = req.body.firstName
         // const lastName = req.body.lastName
+        const {email, password, firstName, lastName} = req.body; // Destructuring 
         
         //Input validation using Zod
         const requiredBody = z.object({
@@ -30,7 +29,6 @@ dotenv.config()
             })
             return
         }
-        const {email, password, firstName, lastName} = req.body; // Destructuring 
 
         let errorThrown = false;
         
@@ -57,6 +55,8 @@ dotenv.config()
     
     userRouter.post("/signin", async function(req,res){
 
+        const { email , password } = req.body;
+        //Input validation
         const requiredBody = z.object({
             email: z.string().email(),
             password: z.string().min(3).max(10)
@@ -69,7 +69,6 @@ dotenv.config()
             })
             return
         }
-        const { email , password } = req.body;
         
         const user = await userModel.findOne({
             email:email,
@@ -93,10 +92,6 @@ dotenv.config()
                 message: "Incorrect Credentials"
             })
         }
-
-        res.json({
-            message: "Login endpoint"
-        })
     })
     
     userRouter.get("/purchases",function(req,res){

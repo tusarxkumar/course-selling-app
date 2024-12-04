@@ -1,6 +1,6 @@
 // const mongoose = require("mongoose")
 // const Schema = mongoose.Schema;
-const {Schema, default: mongoose} = require("mongoose")
+const {Schema, mongoose} = require("mongoose")
 const ObjectId = Schema.ObjectId;
 
 
@@ -17,6 +17,7 @@ const adminSchema = new Schema({
     firstName: String,
     lastName: String
 })
+
 const courseSchema = new Schema({
     title: String,
     description : String,
@@ -24,6 +25,7 @@ const courseSchema = new Schema({
     imageUrl: String,
     creatorId: ObjectId
 })
+
 const purchaseSchema = new Schema({
     courseId: ObjectId,
     userId: ObjectId

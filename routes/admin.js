@@ -3,6 +3,9 @@ const {adminModel} = require("../db")
 const adminRouter = Router();
 
     adminRouter.post("/signup",function(req,res){
+        const username = req.body.username;
+        const password = req.body.password;
+        
         res.json({
             message: "admin signed up"
         })

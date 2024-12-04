@@ -1,10 +1,11 @@
-
 const express = require('express')
 const app = express();
+app.use(express.json())
 const mongoose = require('mongoose')
 const dotenv = require('dotenv')
 dotenv.config();
 const URL = process.env.URL
+
 
 const {userRouter} = require("./routes/user")
 const {courseRouter} = require("./routes/course")
@@ -20,7 +21,6 @@ async function main(){
     app.listen(3000);
     console.log("Listening on port 3000")
 }
-
 
 main();
 
